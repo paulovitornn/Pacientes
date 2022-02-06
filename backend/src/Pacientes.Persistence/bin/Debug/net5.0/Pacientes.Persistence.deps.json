@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "Pacientes.Persistence/1.0.0": {
+        "dependencies": {
+          "Pacientes.Domain": "1.0.0"
+        },
+        "runtime": {
+          "Pacientes.Persistence.dll": {}
+        }
+      },
+      "Pacientes.Domain/1.0.0": {
+        "runtime": {
+          "Pacientes.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Pacientes.Persistence/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Pacientes.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

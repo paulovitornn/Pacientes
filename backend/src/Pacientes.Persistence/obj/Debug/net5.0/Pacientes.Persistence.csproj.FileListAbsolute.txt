@@ -1,0 +1,15 @@
+D:\Projects\Pacientes\backend\src\Pacientes.Persistence\bin\Debug\net5.0\Pacientes.Persistence.deps.json
+D:\Projects\Pacientes\backend\src\Pacientes.Persistence\bin\Debug\net5.0\Pacientes.Persistence.dll
+D:\Projects\Pacientes\backend\src\Pacientes.Persistence\bin\Debug\net5.0\ref\Pacientes.Persistence.dll
+D:\Projects\Pacientes\backend\src\Pacientes.Persistence\bin\Debug\net5.0\Pacientes.Persistence.pdb
+D:\Projects\Pacientes\backend\src\Pacientes.Persistence\bin\Debug\net5.0\Pacientes.Domain.dll
+D:\Projects\Pacientes\backend\src\Pacientes.Persistence\bin\Debug\net5.0\Pacientes.Domain.pdb
+D:\Projects\Pacientes\backend\src\Pacientes.Persistence\obj\Debug\net5.0\Pacientes.Persistence.csproj.AssemblyReference.cache
+D:\Projects\Pacientes\backend\src\Pacientes.Persistence\obj\Debug\net5.0\Pacientes.Persistence.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\Pacientes\backend\src\Pacientes.Persistence\obj\Debug\net5.0\Pacientes.Persistence.AssemblyInfoInputs.cache
+D:\Projects\Pacientes\backend\src\Pacientes.Persistence\obj\Debug\net5.0\Pacientes.Persistence.AssemblyInfo.cs
+D:\Projects\Pacientes\backend\src\Pacientes.Persistence\obj\Debug\net5.0\Pacientes.Persistence.csproj.CoreCompileInputs.cache
+D:\Projects\Pacientes\backend\src\Pacientes.Persistence\obj\Debug\net5.0\Pacientes.Persistence.csproj.CopyComplete
+D:\Projects\Pacientes\backend\src\Pacientes.Persistence\obj\Debug\net5.0\Pacientes.Persistence.dll
+D:\Projects\Pacientes\backend\src\Pacientes.Persistence\obj\Debug\net5.0\ref\Pacientes.Persistence.dll
+D:\Projects\Pacientes\backend\src\Pacientes.Persistence\obj\Debug\net5.0\Pacientes.Persistence.pdb

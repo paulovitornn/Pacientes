@@ -1,0 +1,17 @@
+D:\Projects\Pacientes\backend\src\Pacientes.Application\bin\Debug\net5.0\Pacientes.Application.deps.json
+D:\Projects\Pacientes\backend\src\Pacientes.Application\bin\Debug\net5.0\Pacientes.Application.dll
+D:\Projects\Pacientes\backend\src\Pacientes.Application\bin\Debug\net5.0\ref\Pacientes.Application.dll
+D:\Projects\Pacientes\backend\src\Pacientes.Application\bin\Debug\net5.0\Pacientes.Application.pdb
+D:\Projects\Pacientes\backend\src\Pacientes.Application\bin\Debug\net5.0\Pacientes.Domain.dll
+D:\Projects\Pacientes\backend\src\Pacientes.Application\bin\Debug\net5.0\Pacientes.Persistence.dll
+D:\Projects\Pacientes\backend\src\Pacientes.Application\bin\Debug\net5.0\Pacientes.Domain.pdb
+D:\Projects\Pacientes\backend\src\Pacientes.Application\bin\Debug\net5.0\Pacientes.Persistence.pdb
+D:\Projects\Pacientes\backend\src\Pacientes.Application\obj\Debug\net5.0\Pacientes.Application.csproj.AssemblyReference.cache
+D:\Projects\Pacientes\backend\src\Pacientes.Application\obj\Debug\net5.0\Pacientes.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\Pacientes\backend\src\Pacientes.Application\obj\Debug\net5.0\Pacientes.Application.AssemblyInfoInputs.cache
+D:\Projects\Pacientes\backend\src\Pacientes.Application\obj\Debug\net5.0\Pacientes.Application.AssemblyInfo.cs
+D:\Projects\Pacientes\backend\src\Pacientes.Application\obj\Debug\net5.0\Pacientes.Application.csproj.CoreCompileInputs.cache
+D:\Projects\Pacientes\backend\src\Pacientes.Application\obj\Debug\net5.0\Pacientes.Application.csproj.CopyComplete
+D:\Projects\Pacientes\backend\src\Pacientes.Application\obj\Debug\net5.0\Pacientes.Application.dll
+D:\Projects\Pacientes\backend\src\Pacientes.Application\obj\Debug\net5.0\ref\Pacientes.Application.dll
+D:\Projects\Pacientes\backend\src\Pacientes.Application\obj\Debug\net5.0\Pacientes.Application.pdb
