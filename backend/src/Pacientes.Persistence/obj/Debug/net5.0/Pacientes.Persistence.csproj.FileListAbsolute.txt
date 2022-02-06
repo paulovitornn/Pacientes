@@ -13,3 +13,6 @@ D:\Projects\Pacientes\backend\src\Pacientes.Persistence\obj\Debug\net5.0\Pacient
 D:\Projects\Pacientes\backend\src\Pacientes.Persistence\obj\Debug\net5.0\Pacientes.Persistence.dll
 D:\Projects\Pacientes\backend\src\Pacientes.Persistence\obj\Debug\net5.0\ref\Pacientes.Persistence.dll
 D:\Projects\Pacientes\backend\src\Pacientes.Persistence\obj\Debug\net5.0\Pacientes.Persistence.pdb
+D:\Projects\Pacientes\backend\src\Pacientes.Persistence\bin\Debug\net5.0\Pacientes.Persistence.runtimeconfig.json
+D:\Projects\Pacientes\backend\src\Pacientes.Persistence\bin\Debug\net5.0\Pacientes.Persistence.runtimeconfig.dev.json
+D:\Projects\Pacientes\backend\src\Pacientes.Persistence\obj\Debug\net5.0\Pacientes.Persistence.genruntimeconfig.cache

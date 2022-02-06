@@ -1,16 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Pacientes.Application;
+using Pacientes.Application.Interfaces;
+using Pacientes.Persistence;
+using Pacientes.Persistence.Context;
+using Pacientes.Persistence.Interfaces;
 
 namespace Pacientes.API
 {
@@ -27,7 +26,18 @@ namespace Pacientes.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddDbContext<PacientesContext>(
+                context => context.UseSqlite(Configuration.GetConnectionString("Default"))
+            );
+
+            services.AddControllers()
+                .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = 
+                        Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                    );
+
+            services.AddScoped<IPacienteService, PacienteService>();
+            services.AddScoped<IPacientePersistence, PacientePersistence>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Pacientes.API", Version = "v1" });
@@ -47,6 +57,11 @@ namespace Pacientes.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(access => access.AllowAnyHeader()
+                                    .AllowAnyMethod()
+                                    .AllowAnyOrigin()
+            );
 
             app.UseAuthorization();
 
