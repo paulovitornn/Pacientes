@@ -1,0 +1,234 @@
+<div class="card rounded shadow-sm p-3">
+  <div class="d-flex">
+    <div class="flex-fill pr-3">
+      <div class="input-group mb-2">
+        <input type="text" (keypress)="eventHandler($event)"
+        class="form-control p-3"
+        placeholder="Busque pelo nome ou CPF"
+        [(ngModel)]="filtroCadastros">
+      </div>
+    </div>
+    <div>
+      <a class="d-flex btn btn-outline-primary" href="#">
+        <i class="fa fa-plus-circle my-1"></i>
+        <b class="ml-1 d-none d-sm-block">Novo</b>
+      </a>
+    </div>
+
+  </div>
+
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th class="d-none d-md-table-cell">Nascimento</th>
+        <th>Editar</th>
+        <th>Excluir</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="pacientesFitrados && pacientesFitrados.length">
+      <tr *ngFor="let paciente of pacientesFitrados">
+        <td>{{paciente.nome}}</td>
+        <td>{{paciente.cpf}}</td>
+        <td class="d-none d-md-table-cell">{{paciente.dataNascimento | DateTimePipe}}</td>
+        <td>
+          <div class="btn-group">
+            <button class="btn btn-primary btn-lg" tooltip="Editar" (click)="editarCadastroPaciente(paciente, cadastroPacientes)">
+              <i class="fa fa-edit"></i>
+            </button>
+          </div>
+        </td>
+        <td>
+          <div class="btn-group">
+            <button class="btn btn-danger btn-lg" tooltip="Excluir" (click)="openModalExcluirPaciente(excluirPaciente)">
+              <i class="fa fa-trash"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot *ngIf="!pacientes.length">
+      <tr>
+        <td colspan="8" class="text-center">
+          <h4>Nenhum cadastro encontrado</h4>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+<ng-template #excluirPaciente>
+  <div class="modal-body text-center">
+    <p>Confirma a exclusão deste cadastro?</p>
+    <button type="button" class="btn btn-default"(click)="confirmExcluirCadastro()">Sim</button>
+    <button type="button" class="btn btn-primary"(click)="declineExcluirCadastro()">Não</button>
+  </div>
+</ng-template>
+
+<ng-template class="cadastroPaciente" #cadastroPaciente>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+  </div>
+</ng-template>
+
+<ng-template #cadastroPacientes>
+  <div>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Cadastro de Paciente</h4>
+      <button type="button" class="close btn-close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Nome</span>
+        <input value="{{pacienteEdit.nome}}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <div class="input-group mb-3 p-0">
+          <span class="input-group-text" id="inputGroup-sizing-default">CPF</span>
+          <input value="{{pacienteEdit.cpf}}"type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        </div>
+      </div>
+      <div class="d-flex justify-content-center input-right">
+        <div class="input-group mb-3 ">
+          <span class="input-group-text" id="inputGroup-sizing-default">CNS</span>
+          <input value="{{pacienteEdit.cns}}"type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        </div>
+
+        <div class="input-group mb-3 p-0 ml-5 input-left">
+          <span class="input-group-text" id="inputGroup-sizing-default">RG</span>
+          <input value="{{pacienteEdit.rg}}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <div class="form-floating mb-3">
+          <input value="{{pacienteEdit.dataNascimento}}" type="date" class="form-control" id="floatingInputGrid">
+          <label for="floatingInputGrid">Data Nascimento</label>
+        </div>
+        <div class="container">
+          <div class="form-check">
+            <input value="Masculino"  [(ngModel)]="pacienteEdit.sexo" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+              Masculino
+            </label>
+          </div>
+          <div class="form-check">
+            <input value="Feminino"  [(ngModel)]="pacienteEdit.sexo" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+            <label class="form-check-label" for="flexRadioDefault2">
+              Feminino
+            </label>
+          </div>
+      </div>
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Endereço</span>
+        <input value="{{pacienteEdit.endereco}}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+      </div>
+      <div class="d-flex justify-content-center">
+        <div class="input-group mb-3 p-0 ml-5">
+          <span class="input-group-text" id="inputGroup-sizing-default">Bairro</span>
+          <input value="{{pacienteEdit.bairro}}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        </div>
+        <div class="input-group mb-3 p-0 ml-5 input-left">
+          <span class="input-group-text" id="inputGroup-sizing-default">CEP</span>
+          <input value="{{pacienteEdit.cep}}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        </div>
+      </div>
+      <div class="d-flex justify-content-center">
+        <select class="form-select form-select-sm uf" aria-label=".form-select-sm example">
+          <option value="" selected></option>
+          <option value="AC">Acre</option>
+          <option value="AL">Alagoas</option>
+          <option value="AP">Amapá</option>
+          <option value="AM">Amazonas</option>
+          <option value="BA">Bahia</option>
+          <option value="CE">Ceará</option>
+          <option value="DF">Distrito Federal</option>
+          <option value="ES">Espírito Santo</option>
+          <option value="GO">Goiás</option>
+          <option value="MA">Maranhão</option>
+          <option value="MT">Mato Grosso</option>
+          <option value="MS">Mato Grosso do Sul</option>
+          <option value="MG">Minas Gerais</option>
+          <option value="PA">Pará</option>
+          <option value="PB">Paraíba</option>
+          <option value="PR">Paraná</option>
+          <option value="PE">Pernambuco</option>
+          <option value="PI">Piauí</option>
+          <option value="RJ">Rio de Janeiro</option>
+          <option value="RN">Rio Grande do Norte</option>
+          <option value="RS">Rio Grande do Sul</option>
+          <option value="RO">Rondônia</option>
+          <option value="RR">Roraima</option>
+          <option value="SC">Santa Catarina</option>
+          <option value="SP">São Paulo</option>
+          <option value="SE">Sergipe</option>
+          <option value="TO">Tocantins</option>
+          <option value="EX">Estrangeiro</option>
+        </select>
+        <div class="input-group mb-3 p-0 ml-5 input-left">
+          <span class="input-group-text" id="inputGroup-sizing-default">Cidade</span>
+          <input value="{{pacienteEdit.cidade}}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        </div>
+      </div>
+      <hr>
+      <div class="container">
+        <div class="container d-flex justify-content-center">
+          <div class="btn-group">
+            <button class="btn btn-primary btn-lg" tooltip="novoTelefone">
+              <i class="fa fa-plus"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="container" id="telefones">
+          <table class="table table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th>Tipo</th>
+                <th>DDD Telefone</th>
+                <th>Excluir</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let tel of pacienteEdit.telefones">
+                <td>
+                  <input value="{{tel.tipo}}" class="form-control form-control-sm" type="text" placeholder="Ex:. Celular" aria-label=".form-control-sm example">
+                </td>
+                <td>
+                  <div class="d-flex">
+                    <input value="{{tel.ddd}}" class="form-control form-control-sm ddd" type="number" placeholder="000" aria-label=".form-control-sm example">
+                    <input value="{{tel.numero}}" class="form-control form-control-sm input-left" type="number" placeholder="Telefone" aria-label=".form-control-sm example">
+                  </div>
+                </td>
+                <td>
+                  <div class="btn-group">
+                    <button class="btn btn-danger btn-lg" tooltip="Excluir" (click)="openModalExcluirPaciente(excluirPaciente)">
+                    <i class="fa fa-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+
+        </div>
+    </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary">Save changes</button>
+    </div>
+  </div>
+</ng-template>

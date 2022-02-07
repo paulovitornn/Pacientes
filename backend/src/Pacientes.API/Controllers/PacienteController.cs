@@ -105,7 +105,7 @@ namespace Pacientes.API.Controllers
             }
         }
 
-        [HttpGet("getPacienteByNome/{nomePaciente}")]
+        [HttpGet("getPacientesByNome/{nomePaciente}")]
         public async Task<IActionResult> GetPacienteByNomeAsync(string nomePaciente)
         {
              try
@@ -122,7 +122,7 @@ namespace Pacientes.API.Controllers
             }
         }
 
-        [HttpGet("getPacienteByCPF/{cpfPaciente}")]
+        [HttpGet("getPacientesByCPF/{cpfPaciente}")]
         public async Task<IActionResult> GetPacienteByCpfAsync(string cpfPaciente)
         {
              try

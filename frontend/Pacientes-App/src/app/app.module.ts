@@ -1,0 +1,36 @@
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
+
+import { ModalModule } from 'ngx-bootstrap/modal';
+
+/* Componentes */
+import { AppComponent } from './app.component';
+import { PacientesComponent } from './pacientes/pacientes.component';
+
+/* services */
+import { PacienteService } from './services/Paciente.service';
+
+import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+      PacientesComponent,
+      DateTimeFormatPipe
+   ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    FormsModule,
+    ModalModule.forRoot()
+  ],
+  providers: [PacienteService],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
