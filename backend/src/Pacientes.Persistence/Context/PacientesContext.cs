@@ -1,5 +1,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using Pacientes.Domain;
 
 namespace Pacientes.Persistence.Context
@@ -75,7 +76,6 @@ namespace Pacientes.Persistence.Context
             modelBuilder.Entity<Telefone>()
                 .HasData(tel1,tel2);
         }
-
 
     }
 

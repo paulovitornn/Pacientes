@@ -9,7 +9,7 @@ export class NavbarComponent implements OnInit {
   isCollapsed = true;
   iconClass: string = 'fa fa-user';
   subtitulo: string= " Cadastro de Paciente";
-  titulo: string= "Tele-Saude";
+  titulo: string= "CRUD";
 
   constructor() { }
 

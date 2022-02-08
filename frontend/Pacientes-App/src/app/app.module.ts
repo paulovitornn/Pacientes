@@ -4,9 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
-
 import { ModalModule } from 'ngx-bootstrap/modal';
-
+import { NgxSpinner, NgxSpinnerModule } from 'ngx-spinner';
 /* Componentes */
 import { AppComponent } from './app.component';
 import { PacientesComponent } from './pacientes/pacientes.component';
@@ -18,7 +17,7 @@ import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
 import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
       PacientesComponent,
       DateTimeFormatPipe,
@@ -30,7 +29,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    NgxSpinnerModule
   ],
   providers: [PacienteService],
   bootstrap: [AppComponent]

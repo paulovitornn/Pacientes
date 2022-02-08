@@ -65,3 +65,5 @@ D:\Projects\Pacientes\backend\src\Pacientes.API\bin\Debug\net5.0\Microsoft.AspNe
 D:\Projects\Pacientes\backend\src\Pacientes.API\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 D:\Projects\Pacientes\backend\src\Pacientes.API\bin\Debug\net5.0\Newtonsoft.Json.dll
 D:\Projects\Pacientes\backend\src\Pacientes.API\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+D:\Projects\Pacientes\backend\src\Pacientes.API\bin\Debug\net5.0\MySqlConnector.dll
+D:\Projects\Pacientes\backend\src\Pacientes.API\bin\Debug\net5.0\Pomelo.EntityFrameworkCore.MySql.dll

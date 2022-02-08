@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Paciente } from '../models/Paciente';
 import { PacienteService } from '../services/Paciente.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-pacientes',
@@ -13,6 +14,7 @@ export class PacientesComponent implements OnInit {
   constructor(
     private pService : PacienteService,
     private modalService: BsModalService,
+    private spinner: NgxSpinnerService
   ) { }
 
   modalRef?: BsModalRef;
@@ -22,6 +24,8 @@ export class PacientesComponent implements OnInit {
     backdrop: true,
     ignoreBackdropClick: true
   };
+
+
 
   pacienteEdit = { } as Paciente;
   public pacientes:Paciente[] = [];
@@ -108,8 +112,10 @@ export class PacientesComponent implements OnInit {
       },
       error:(error:any) =>{
         alert('Erro');
+        this.spinner.hide();
       },
       complete:()=>{
+        this.spinner.hide();
       }
     })
   }
@@ -264,6 +270,7 @@ export class PacientesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.spinner.show();
     this.getAllPacientes();
   }
 

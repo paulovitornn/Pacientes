@@ -26,9 +26,15 @@ namespace Pacientes.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<PacientesContext>(
+            string mySqlConnection = Configuration.GetConnectionString("DefaultMySql");
+
+            services.AddDbContextPool<PacientesContext>(options => 
+            options.UseMySql(mySqlConnection,
+                        ServerVersion.AutoDetect(mySqlConnection)));
+
+            /* services.AddDbContext<PacientesContext>(
                 context => context.UseSqlite(Configuration.GetConnectionString("Default"))
-            );
+            ); */
 
             services.AddControllers()
                 .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = 
@@ -37,7 +43,7 @@ namespace Pacientes.API
 
             services.AddScoped<IPacienteService, PacienteService>();
             services.AddScoped<IPacientePersistence, PacientePersistence>();
-
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Pacientes.API", Version = "v1" });
