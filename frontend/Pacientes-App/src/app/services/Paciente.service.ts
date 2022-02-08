@@ -12,20 +12,31 @@ export class PacienteService {
 
   baseURL = "https://localhost:5001/Paciente/"
 
-  getAllPacientes(): Observable<Paciente[]>{
+  public getAllPacientes(): Observable<Paciente[]>{
     return this.http.get<Paciente[]>(`${this.baseURL}getAllPacientes`);
   }
 
-  getPacienteById(id:number): Observable<Paciente[]>{
-    return this.http.get<Paciente[]>(`${this.baseURL}getPacienteById/${id}`);
+  public getPacienteById(id:number): Observable<Paciente>{
+    return this.http.get<Paciente>(`${this.baseURL}getPacienteById/${id}`);
   }
 
-  getPacientesByNome(nome:string): Observable<Paciente[]>{
+  public getPacientesByNome(nome:string): Observable<Paciente[]>{
     return this.http.get<Paciente[]>(`${this.baseURL}getPacientesByNome/${nome}`);
   }
 
-  getPacientesByCPF(cpf:string): Observable<Paciente[]>{
+  public getPacientesByCPF(cpf:string): Observable<Paciente[]>{
     return this.http.get<Paciente[]>(`${this.baseURL}getPacientesByCPF/${cpf}`);
   }
 
+  public postNovoPaciente(paciente:Paciente) :Observable<Paciente> {
+    return this.http.post<Paciente>(`${this.baseURL}novoPaciente`,paciente);
+  }
+
+  public putAtualizarCadastro(id:number, paciente:Paciente): Observable<Paciente>{
+    return this.http.put<Paciente>(`${this.baseURL}atualizarCadastroPaciente/${id}`, paciente);
+  }
+
+  public deleteCadastro(id:number): Observable<string>{
+    return this.http.delete<string>(`${this.baseURL}excluirCadastro/${id}`);
+  }
 }

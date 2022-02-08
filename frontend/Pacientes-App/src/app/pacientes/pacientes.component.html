@@ -8,10 +8,10 @@
         [(ngModel)]="filtroCadastros">
       </div>
     </div>
-    <div>
-      <a class="d-flex btn btn-outline-primary" href="#">
+    <div class="p-2">
+      <a class="d-flex btn btn-outline-primary" href="#" (click)="novoPaciente(cadastroPacientes)">
         <i class="fa fa-plus-circle my-1"></i>
-        <b class="ml-1 d-none d-sm-block">Novo</b>
+        <b class="ps-1 d-none d-sm-block">Novo</b>
       </a>
     </div>
 
@@ -41,7 +41,7 @@
         </td>
         <td>
           <div class="btn-group">
-            <button class="btn btn-danger btn-lg" tooltip="Excluir" (click)="openModalExcluirPaciente(excluirPaciente)">
+            <button class="btn btn-danger btn-lg" tooltip="Excluir" (click)="openModalExcluirPaciente(excluirPaciente, paciente.id)">
               <i class="fa fa-trash"></i>
             </button>
           </div>
@@ -88,41 +88,41 @@
     <div class="modal-body">
       <div class="input-group mb-3">
         <span class="input-group-text" id="inputGroup-sizing-default">Nome</span>
-        <input value="{{pacienteEdit.nome}}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        <input [(ngModel)]="pacienteEdit.nome" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
       </div>
 
       <div class="d-flex justify-content-center">
         <div class="input-group mb-3 p-0">
           <span class="input-group-text" id="inputGroup-sizing-default">CPF</span>
-          <input value="{{pacienteEdit.cpf}}"type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          <input [(ngModel)]="pacienteEdit.cpf" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
         </div>
       </div>
       <div class="d-flex justify-content-center input-right">
         <div class="input-group mb-3 ">
           <span class="input-group-text" id="inputGroup-sizing-default">CNS</span>
-          <input value="{{pacienteEdit.cns}}"type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          <input [(ngModel)]="pacienteEdit.cns" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
         </div>
 
         <div class="input-group mb-3 p-0 ml-5 input-left">
           <span class="input-group-text" id="inputGroup-sizing-default">RG</span>
-          <input value="{{pacienteEdit.rg}}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          <input [(ngModel)]="pacienteEdit.rg" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
         </div>
       </div>
 
       <div class="d-flex justify-content-center">
         <div class="form-floating mb-3">
-          <input value="{{pacienteEdit.dataNascimento}}" type="date" class="form-control" id="floatingInputGrid">
+          <input [(ngModel)]="pacienteEdit.dataNascimento" type="date" class="form-control" id="floatingInputGrid">
           <label for="floatingInputGrid">Data Nascimento</label>
         </div>
         <div class="container">
           <div class="form-check">
-            <input value="Masculino"  [(ngModel)]="pacienteEdit.sexo" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <input value="m"  [(ngModel)]="pacienteEdit.sexo" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
             <label class="form-check-label" for="flexRadioDefault1">
               Masculino
             </label>
           </div>
           <div class="form-check">
-            <input value="Feminino"  [(ngModel)]="pacienteEdit.sexo" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+            <input value="f"  [(ngModel)]="pacienteEdit.sexo" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
             <label class="form-check-label" for="flexRadioDefault2">
               Feminino
             </label>
@@ -131,21 +131,21 @@
       </div>
       <div class="input-group mb-3">
         <span class="input-group-text" id="inputGroup-sizing-default">Endereço</span>
-        <input value="{{pacienteEdit.endereco}}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        <input [(ngModel)]="pacienteEdit.endereco" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
       </div>
       <div class="d-flex justify-content-center">
         <div class="input-group mb-3 p-0 ml-5">
           <span class="input-group-text" id="inputGroup-sizing-default">Bairro</span>
-          <input value="{{pacienteEdit.bairro}}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          <input [(ngModel)]="pacienteEdit.bairro" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
         </div>
         <div class="input-group mb-3 p-0 ml-5 input-left">
           <span class="input-group-text" id="inputGroup-sizing-default">CEP</span>
-          <input value="{{pacienteEdit.cep}}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          <input [(ngModel)]="pacienteEdit.cep" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
         </div>
       </div>
       <div class="d-flex justify-content-center">
-        <select class="form-select form-select-sm uf" aria-label=".form-select-sm example">
-          <option value="" selected></option>
+        <select class="form-select form-select-sm uf" aria-label=".form-select-sm example" [(ngModel)]="pacienteEdit.uf">
+          <option value="" selected>Selecione UF</option>
           <option value="AC">Acre</option>
           <option value="AL">Alagoas</option>
           <option value="AP">Amapá</option>
@@ -177,42 +177,34 @@
         </select>
         <div class="input-group mb-3 p-0 ml-5 input-left">
           <span class="input-group-text" id="inputGroup-sizing-default">Cidade</span>
-          <input value="{{pacienteEdit.cidade}}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          <input [(ngModel)]="pacienteEdit.cidade" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
         </div>
       </div>
       <hr>
       <div class="container">
-        <div class="container d-flex justify-content-center">
-          <div class="btn-group">
-            <button class="btn btn-primary btn-lg" tooltip="novoTelefone">
-              <i class="fa fa-plus"></i>
-            </button>
-          </div>
-        </div>
-
         <div class="container" id="telefones">
           <table class="table table-striped">
             <thead class="thead-dark">
               <tr>
                 <th>Tipo</th>
-                <th>DDD Telefone</th>
+                <th>Telefone</th>
                 <th>Excluir</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let tel of pacienteEdit.telefones">
                 <td>
-                  <input value="{{tel.tipo}}" class="form-control form-control-sm" type="text" placeholder="Ex:. Celular" aria-label=".form-control-sm example">
+                  <input [(ngModel)]="tel.tipo" class="form-control form-control-sm" type="text" placeholder="Ex:. Celular" aria-label=".form-control-sm example">
                 </td>
                 <td>
                   <div class="d-flex">
-                    <input value="{{tel.ddd}}" class="form-control form-control-sm ddd" type="number" placeholder="000" aria-label=".form-control-sm example">
-                    <input value="{{tel.numero}}" class="form-control form-control-sm input-left" type="number" placeholder="Telefone" aria-label=".form-control-sm example">
+                    <input [(ngModel)]="tel.ddd" class="form-control form-control-sm ddd" type="number" placeholder="000" aria-label=".form-control-sm example">
+                    <input [(ngModel)]="tel.numero" class="form-control form-control-sm input-left" type="number" placeholder="Telefone" aria-label=".form-control-sm example">
                   </div>
                 </td>
                 <td>
                   <div class="btn-group">
-                    <button class="btn btn-danger btn-lg" tooltip="Excluir" (click)="openModalExcluirPaciente(excluirPaciente)">
+                    <button class="btn btn-danger btn-lg" tooltip="Excluir" (click)="removeTelefone(pacienteEdit.telefones.indexOf(tel))">
                     <i class="fa fa-trash"></i>
                     </button>
                   </div>
@@ -220,15 +212,20 @@
               </tr>
             </tbody>
           </table>
-
-
+          <div class="container d-flex justify-content-center">
+            <div class="btn-group">
+              <button class="btn btn-primary btn-lg" tooltip="novoTelefone" (click)="novoTelefone()">
+                <i class="fa fa-plus"></i>
+              </button>
+            </div>
+          </div>
         </div>
     </div>
 
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      <button type="button" class="btn btn-primary">Save changes</button>
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="fecharModalCadastroPaciente()">Fechar</button>
+      <button type="button" class="btn btn-primary" (click)="salvarCadastro()">Salvar</button>
     </div>
   </div>
 </ng-template>

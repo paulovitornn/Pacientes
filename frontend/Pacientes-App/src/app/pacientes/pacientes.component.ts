@@ -17,22 +17,17 @@ export class PacientesComponent implements OnInit {
 
   modalRef?: BsModalRef;
   message?: string;
-  public radioModelSex = 'Masculino';
-
-  public testeButton(){
-    console.log(this.radioModelSex);
-  }
-
 
   public config = {
     backdrop: true,
     ignoreBackdropClick: true
   };
 
-  public pacienteEdit: any;
+  pacienteEdit = { } as Paciente;
   public pacientes:Paciente[] = [];
   public pacientesFitrados:Paciente[] = [];
   private _filtroCadastros: string = '';
+  private idPacienteExcluir: number = 0;
 
   public get filtroCadastros(): string {
     return this._filtroCadastros;
@@ -40,9 +35,6 @@ export class PacientesComponent implements OnInit {
 
   public set filtroCadastros(value: string) {
     this._filtroCadastros = value;
-    //Aqui faz a filtragem apenas no array já carregado
-    //this.pacientesFitrados = this._filtroCadastros ? this.filtrarPacientes(this._filtroCadastros): this.pacientes;
-
     if(this.isNumber(value) && value.length>2){
       this.getPacientesByCPF(value);
     } else if(this.isNumber(value)==false && value.length>2) {
@@ -83,7 +75,26 @@ export class PacientesComponent implements OnInit {
   public eventHandler(event: KeyboardEvent) {
     //console.log('Key pressed is: ', event.code);
     /* usar essa função para otimizar a busca, para nao gerar uma nova requisicao a cada letra; */
- }
+  }
+
+  private limparPacienteEdit(){
+    this.pacienteEdit = {
+      id : 0,
+      nome:'',
+      cpf:'',
+      rg:'',
+      cns:'',
+      dataNascimento: undefined,
+      sexo:'',
+      nomeMae:'',
+      endereco:'',
+      bairro:'',
+      cep:0,
+      uf:'',
+      cidade:'',
+      telefones:[]
+    };
+  }
 
   private isNumber(str:any) {
     return !isNaN(str)
@@ -100,8 +111,28 @@ export class PacientesComponent implements OnInit {
       },
       complete:()=>{
       }
-
     })
+  }
+
+  public getDateNasc(dataNasc:any){
+    var currentDate = new Date(dataNasc);
+    var day = currentDate.getDate();
+    var month = (currentDate.getMonth()+1);
+    var year = currentDate.getFullYear();
+    var dia;
+    var mes;
+    if(day<10){
+      dia = "0"+day;
+    } else {
+      dia = day;
+    }
+    if(month<10){
+      mes = "0"+month;
+    } else {
+      mes = month;
+    }
+    dataNasc = `${year}-${mes}-${dia}`;
+    return dataNasc;
   }
 
   filtrarPacientes(filtrarPor: string): any {
@@ -113,31 +144,123 @@ export class PacientesComponent implements OnInit {
     )
   }
 
-  openModalExcluirPaciente(template: TemplateRef<any>) {
+  public openModalExcluirPaciente(template: TemplateRef<any>, idPacienteExcluir:number) {
+    this.idPacienteExcluir = 0;
+    this.idPacienteExcluir = idPacienteExcluir;
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
 
-  /* openModalCadastroPaciente(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
-  } */
-
-  confirmExcluirCadastro(): void {
+  public confirmExcluirCadastro(): void {
+    this.pService.deleteCadastro(this.idPacienteExcluir)
+      .subscribe(
+        ()=>
+          alert("Cadastro excluido com sucesso!"),
+        (error:any)=>{
+          alert("Erro ao tentar excluir cadastro");
+          console.error(error);
+          this.modalRef?.hide();
+          this.getAllPacientes();
+        },
+        ()=>{
+          this.modalRef?.hide();
+          this.getAllPacientes();
+        }
+      );
     this.modalRef?.hide();
   }
 
-  declineExcluirCadastro(): void {
+  public declineExcluirCadastro(): void {
+    this.idPacienteExcluir = 0;
     this.modalRef?.hide();
   }
 
   public editarCadastroPaciente(paciente:Paciente, template: TemplateRef<any>){
-    console.log(this.pacienteEdit);
-    this.pacienteEdit = paciente;
+    this.limparPacienteEdit();
+    this.getPacienteById(paciente.id);
     this.openModalCadastroPaciente(template)
-    console.log(this.pacienteEdit);
   }
 
-  openModalCadastroPaciente(template: TemplateRef<any>){
+  private getPacienteById(id:number){
+    this.pService.getPacienteById(id).subscribe({
+      next: (p:Paciente) => {
+        this.pacienteEdit = p;
+      },
+      error:(error:any) =>{
+        alert('Erro');
+      },
+      complete:()=>{
+        this.pacienteEdit.dataNascimento = this.getDateNasc(this.pacienteEdit.dataNascimento);
+      }
+    })
+  }
+
+  public novoPaciente(template: TemplateRef<any>){
+    this.limparPacienteEdit();
+    console.log(this.pacienteEdit);
+    console.log(this.pacienteEdit.id);
+    this.openModalCadastroPaciente(template);
+  }
+
+  public openModalCadastroPaciente(template: TemplateRef<any>){
     this.modalRef = this.modalService.show(template, this.config);
+  }
+
+  public fecharModalCadastroPaciente():void {
+    this.limparPacienteEdit();
+    this.modalRef?.hide();
+  }
+
+  public salvarCadastro(){
+    if(this.pacienteEdit.id!==undefined && this.pacienteEdit.id!==null && this.pacienteEdit.id > 0)
+    {
+      this.pService.putAtualizarCadastro(this.pacienteEdit.id, this.pacienteEdit)
+      .subscribe(
+        ()=>alert("Cadastro atualizado com sucesso!"),
+        (error:any)=>{
+          alert("Erro ao tentar salvar alteração")
+        },
+        ()=>{
+          this.modalRef?.hide();
+          this.getAllPacientes();
+        }
+      );
+    }
+    else
+    {
+      this.pService.postNovoPaciente(this.pacienteEdit)
+      .subscribe(
+        ()=>alert("Cadastro salvo com sucesso!"),
+        (error:any)=>{
+          alert("Erro ao tentar salvar cadastro")
+        },
+        ()=>{
+          this.modalRef?.hide();
+          this.getAllPacientes();
+        }
+      );
+    }
+    //this.modalRef?.hide();
+    //this.getAllPacientes();
+  }
+
+  public novoTelefone():void {
+    this.pacienteEdit.telefones.push(
+      {
+        id:0,
+        tipo: '',
+        ddd: 0,
+        numero: 0
+      }
+    );
+  }
+
+  public removeTelefone(index:any):void{
+    this.pacienteEdit.telefones.splice((index),1);
+    console.log(index);
+  }
+
+  clearPacientes(){
+    this.pacientes = [];
   }
 
   ngOnInit() {

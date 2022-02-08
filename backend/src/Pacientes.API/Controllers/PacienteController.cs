@@ -2,9 +2,10 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Pacientes.Application.Interfaces;
 using Pacientes.Domain;
+using System.Text.Json;
+
 
 namespace Pacientes.API.Controllers
 {
@@ -59,10 +60,8 @@ namespace Pacientes.API.Controllers
             try
             {
                 return await pacienteService.DeletePacientes(idPaciente) ?
-                    Ok("Cadastro excluido com sucesso.") 
-                        : BadRequest("Não foi encontrado o cadastro a ser excluido.");
-
-                
+                    Ok(JsonSerializer.Serialize("Cadastro excluido com sucesso."))
+                        : BadRequest("Não foi encontrado o cadastro a ser excluido.");  
             }
             catch (Exception ex)
             {
