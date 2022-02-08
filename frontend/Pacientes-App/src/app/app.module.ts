@@ -15,12 +15,14 @@ import { PacientesComponent } from './pacientes/pacientes.component';
 import { PacienteService } from './services/Paciente.service';
 
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
       PacientesComponent,
-      DateTimeFormatPipe
+      DateTimeFormatPipe,
+      NavbarComponent
    ],
   imports: [
     BrowserModule,
